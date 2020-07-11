@@ -26,7 +26,7 @@ server.get('/', (req, res) => {
   res.send({ message: 'Welcome to the node api sprint' });
 });
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 server.listen(4000, () => {
   console.log(`server running on port ${PORT}`);
 });
