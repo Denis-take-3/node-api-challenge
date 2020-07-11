@@ -1,5 +1,6 @@
 const Actions = require('../data/helpers/actionModel');
 const Projects = require('../data/helpers/projectModel');
+
 function validateActionId(req, res, next) {
   Actions.get(req.params.id).then((action) => {
     if (!action) {
@@ -12,7 +13,7 @@ function validateActionId(req, res, next) {
 function validateAction(req, res, next) {
   if (!req.body) {
     res.status(400).json({ Error: 'please provide data for an action' });
-  } else if (!req.body.project_id || !req.body.descrition || !req.body.notes) {
+  } else if (!req.body.project_id || !req.body.description || !req.body.notes) {
     res.status(400).json({ Error: 'please provide a valid project_id, description, and notes.' });
   }
 
@@ -25,6 +26,8 @@ function validateAction(req, res, next) {
     .catch((err) =>
       res.status(500).json({ Error: 'could not validaate project_id, check your connection and try again' })
     );
+
+  next();
 }
 
 module.exports = {

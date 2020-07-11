@@ -1,11 +1,10 @@
-const express = express();
-const projectRouter = express.Router();
+const projectRouter = require('express').Router();
 
 const Projects = require('../data/helpers/projectModel');
 
-const validateProject = require('../Middleware/projectsMiddleWare');
+const { validateProject } = require('../Middleware/projectsMiddleWare');
 
-const validateProjectId = require('../Middleware/projectsMiddleWare');
+const { validateProjectId } = require('../Middleware/projectsMiddleWare');
 
 projectRouter.get('/', (req, res) => {
   Projects.get()
@@ -32,7 +31,7 @@ projectRouter.post('/', validateProject, (req, res) => {
 });
 
 projectRouter.put('/:id', validateProjectId, validateProject, (req, res) => {
-  Projects.remove(req.params.id)
+  Projects.update(req.params.id, req.body)
     .then((count) => {
       res
         .status(201)
@@ -48,8 +47,8 @@ projectRouter.put('/:id', validateProjectId, validateProject, (req, res) => {
 
 projectRouter.delete('/:id', validateProjectId, (req, res) => {
   Projects.remove(req.params.id)
-    .then((deletedId) => {
-      res.status(200).json({ Id_of_deleted_user: deletedId });
+    .then((deletedNum) => {
+      res.status(200).json({ Ammount_of_deleted_users: deletedNum });
     })
     .catch((err) => {
       Error: 'could not remove post';

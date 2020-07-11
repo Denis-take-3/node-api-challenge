@@ -12,10 +12,12 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
-
 const express = require('express');
 const server = express();
 server.use(express.json());
+
+const projectsRouter = require('./Routers/projectsRouter');
+const actionsRouter = require('./Routers/actionsRouter');
 
 server.use('/api/projects/actions', actionsRouter);
 server.use('/api/projects', projectsRouter);

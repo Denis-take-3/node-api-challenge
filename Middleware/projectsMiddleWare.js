@@ -1,6 +1,3 @@
-const Project = require('../data/helpers/projectModel');
-const dbConfig = require('../data/dbConfig');
-
 const Projects = require('../data/helpers/projectModel');
 
 function validateProject(req, res, next) {
